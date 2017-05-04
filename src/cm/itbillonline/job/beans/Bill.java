@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cm.itbillonline.beans;
+package cm.itbillonline.job.beans;
 
 import java.util.ArrayList;
 import java.util.Date;
