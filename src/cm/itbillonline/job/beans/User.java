@@ -66,6 +66,12 @@ public abstract class User {
 		return password;
 	}
 	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+	/**
 	 * @param firstName the firstName to set
 	 */
 	public void setFirstName(String firstName) {

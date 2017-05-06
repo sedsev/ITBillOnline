@@ -4,4 +4,3 @@
 build/
 WebContent/WEB-INF/classes/
 WebContent/META-INF/
-src/cm/itbillonline/job/dao/jdbc/DBConnection.java 
