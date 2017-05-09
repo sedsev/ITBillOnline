@@ -18,4 +18,5 @@ public interface ProviderDAO {
 	public Provider findById(long id);
 	public void merge(Provider provider);
 	public void remove(long id);
+	public long count();
 }

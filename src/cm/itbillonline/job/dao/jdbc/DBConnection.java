@@ -16,7 +16,7 @@ public class DBConnection {
 	private static Connection connection;
 	static{
 		try {
-			Class.forName("com.jdbc.mysql.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/it_bill_online", "root", "sedco92");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

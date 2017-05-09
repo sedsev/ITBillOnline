@@ -17,6 +17,38 @@ public abstract class User {
 	private String phoneNumber;
 	private String login;
 	private String password;
+	
+	/**
+	 * 
+	 */
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	/**
+	 * @param firstName
+	 * @param lastName
+	 * @param gender
+	 * @param email
+	 * @param phoneNumber
+	 * @param login
+	 * @param password
+	 */
+	public User(String firstName, String lastName, String gender, String email,
+			String phoneNumber, String login, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.login = login;
+		this.password = password;
+	}
+
+
 	/**
 	 * @return the id
 	 */
