@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Customer extends User {
 	
-	private ArrayList<PaymentMethod> paymentMethods;
+	private ArrayList<PaymentMethod> paymentMethods = new ArrayList<PaymentMethod>();
 
 	/**
 	 * 
@@ -34,6 +34,7 @@ public class Customer extends User {
 			String email, String phoneNumber, String login, String password) {
 		super(firstName, lastName, gender, email, phoneNumber, login, password);
 		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -50,4 +51,8 @@ public class Customer extends User {
 		this.paymentMethods = paymentMethods;
 	}
 	
+	public void addPaymentMethod(PaymentMethod pm){
+		this.paymentMethods.add(pm);
+		pm.setCustomer(this);
+	}
 }

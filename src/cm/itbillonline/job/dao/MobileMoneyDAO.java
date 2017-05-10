@@ -18,4 +18,5 @@ public interface MobileMoneyDAO {
 	public MobileMoney findById(long id);
 	public void merge(MobileMoney momo);
 	public void remove(long id);
+	public long count();
 }
