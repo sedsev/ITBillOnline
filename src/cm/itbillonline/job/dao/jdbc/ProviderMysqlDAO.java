@@ -27,7 +27,7 @@ public class ProviderMysqlDAO implements ProviderDAO {
 			ps.setString(7, provider.getPassword());
 			ps.executeUpdate();
 			ps.close();
-			ps = con.prepareStatement("SELECT LAST_INSERT_ID AS last_id FROM user");
+			ps = con.prepareStatement("SELECT LAST_INSERT_ID() AS last_id FROM user");
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			long lastId = rs.getLong("last_id");
@@ -61,7 +61,7 @@ public class ProviderMysqlDAO implements ProviderDAO {
 				p.setEmail(rs.getString("email"));
 				p.setPhoneNumber(rs.getString("phone_number"));
 				p.setLogin(rs.getString("login"));
-				p.setPassword(rs.getString("passord"));
+				p.setPassword(rs.getString("password"));
 				p.setOrganisationName(rs.getString("organisation_name"));
 				providers.add(p);
 			}
@@ -76,13 +76,14 @@ public class ProviderMysqlDAO implements ProviderDAO {
 	@Override
 	public Provider findById(long id) {
 		// TODO Auto-generated method stub
-		Provider provider = new Provider();
+		Provider provider = null;
 		Connection con =DBConnection.getConnection();
 		try {
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM user INNER JOIN provider ON WHERE user.id = provider.id WHERE user.id = ?");
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM user INNER JOIN provider ON user.id = provider.id WHERE user.id = ?");
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
+				provider = new Provider();
 				provider.setId(rs.getLong("id"));
 				provider.setFirstName(rs.getString("first_name"));
 				provider.setLastName(rs.getString("last_name"));
@@ -90,7 +91,7 @@ public class ProviderMysqlDAO implements ProviderDAO {
 				provider.setEmail(rs.getString("email"));
 				provider.setPhoneNumber(rs.getString("phone_number"));
 				provider.setLogin(rs.getString("login"));
-				provider.setPassword(rs.getString("passord"));
+				provider.setPassword(rs.getString("password"));
 				provider.setOrganisationName(rs.getString("organisation_name"));
 			}
 			ps.close();
@@ -98,6 +99,7 @@ public class ProviderMysqlDAO implements ProviderDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(provider == null) throw new RuntimeException("Aucun Fournisseur ne correspond à cet identifiant");
 		return provider;
 	}
 
@@ -109,7 +111,26 @@ public class ProviderMysqlDAO implements ProviderDAO {
 		// TODO Auto-generated method stub
 		Connection con = DBConnection.getConnection();
 		try {
+<<<<<<< HEAD
 			PreparedStatement ps = con.prepareStatement("UPDATE user SET first_name = ? ");
+=======
+			PreparedStatement ps = con.prepareStatement("UPDATE user SET last_name = ?, first_name = ?, gender = ?, email = ?, phone_number = ?, login = ?, password = ? WHERE id = ?");
+			ps.setString(1, provider.getLastName());
+			ps.setString(2, provider.getFirstName());
+			ps.setString(3, provider.getGender());
+			ps.setString(4, provider.getEmail());
+			ps.setString(5, provider.getPhoneNumber());
+			ps.setString(6, provider.getLogin());
+			ps.setString(7, provider.getPassword());
+			ps.setLong(8, provider.getId());
+			ps.executeUpdate();
+			ps.close();
+			ps = con.prepareStatement("UPDATE provider SET organisation_name = ? WHERE id = ?");
+			ps.setString(1, provider.getOrganisationName());
+			ps.setLong(2, provider.getId());
+			ps.executeUpdate();
+			ps.close();
+>>>>>>> d36662637aa385596ecc1d4cba9db6990dc2dddf
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -122,7 +143,33 @@ public class ProviderMysqlDAO implements ProviderDAO {
 	@Override
 	public void remove(long id) {
 		// TODO Auto-generated method stub
+		Connection con = DBConnection.getConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement("DELETE FROM user WHERE id = ?");
+			ps.setLong(1, id);
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+	}
+
+	@Override
+	public long count() {
+		Connection con = DBConnection.getConnection();
+		long result = 0;
+		try {
+			PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) AS number_provider FROM provider");
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			result = rs.getLong("number_provider");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

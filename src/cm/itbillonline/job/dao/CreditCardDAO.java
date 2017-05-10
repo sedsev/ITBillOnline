@@ -18,5 +18,6 @@ public interface CreditCardDAO {
 	public CreditCard findById(long id);
 	public void merge(CreditCard card);
 	public void remove(long id);
+	public long count();
 
 }

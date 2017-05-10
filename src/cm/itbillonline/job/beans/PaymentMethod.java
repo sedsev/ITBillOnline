@@ -31,6 +31,12 @@ public abstract class PaymentMethod {
 		return customer;
 	}
 	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+	/**
 	 * @param label the label to set
 	 */
 	public void setLabel(String label) {
