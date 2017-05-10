@@ -18,4 +18,5 @@ public interface EmployeeDAO {
 	public Employee findById(long id);
 	public void merge(Employee employee);
 	public void remove(long id);
+	public long count();
 }
