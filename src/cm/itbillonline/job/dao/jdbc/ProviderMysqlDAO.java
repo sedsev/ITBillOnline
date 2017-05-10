@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package cm.itbillonline.job.dao.jdbc;
 
 import java.sql.Connection;
@@ -13,15 +11,8 @@ import java.util.List;
 import cm.itbillonline.job.beans.Provider;
 import cm.itbillonline.job.dao.ProviderDAO;
 
-/**
- * @author donald
- *
- */
 public class ProviderMysqlDAO implements ProviderDAO {
 
-	/* (non-Javadoc)
-	 * @see cm.itbillonline.job.dao.ProviderDAO#save(cm.itbillonline.job.beans.Provider)
-	 */
 	@Override
 	public void save(Provider provider) {
 		Connection con = DBConnection.getConnection();
@@ -51,12 +42,8 @@ public class ProviderMysqlDAO implements ProviderDAO {
 			e.printStackTrace();
 		}
 		// TODO Auto-generated method stub
-
 	}
 
-	/* (non-Javadoc)
-	 * @see cm.itbillonline.job.dao.ProviderDAO#findAll()
-	 */
 	@Override
 	public List<Provider> findAll() {
 		// TODO Auto-generated method stub
@@ -86,9 +73,6 @@ public class ProviderMysqlDAO implements ProviderDAO {
 		return providers;
 	}
 
-	/* (non-Javadoc)
-	 * @see cm.itbillonline.job.dao.ProviderDAO#findById(long)
-	 */
 	@Override
 	public Provider findById(long id) {
 		// TODO Auto-generated method stub
@@ -125,7 +109,7 @@ public class ProviderMysqlDAO implements ProviderDAO {
 		// TODO Auto-generated method stub
 		Connection con = DBConnection.getConnection();
 		try {
-			PreparedStatement ps = con.prepareStatement("UPDATE user SET first_name = ?, ");
+			PreparedStatement ps = con.prepareStatement("UPDATE user SET first_name = ? ");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
