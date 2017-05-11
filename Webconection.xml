@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+<servlet>
+     <servlet-name>connection</servlet-name>
+     <servlet-class>con.conncetion.servlet.connectionclient</servlet-class>
+</servlet>
+
+<servlet-mapping>
+          <servlet-name>connection</servlet-name>
+          <url-patern>/form</url-patern>
+</servlet-mapping>
+<jsp-config>
+	<jsp-property-group>
+	  <url-pattern> *.jsp</url-pattern>
+	   <include-prelude>WEB-INF/taglibs.jsp</include-prelude>
+	</jsp-property-group>
+</jsp-config>
+
+</web-app>
